@@ -1,0 +1,29 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["local>renovatebot/.github"],
+  "semanticCommitScope": "deps",
+  "stabilityDays": 3,
+  "git-submodules": {
+    "enabled": true
+  },
+  "pip_requirements": {
+    "enabled": false
+  },
+  "pip-compile": {
+    "fileMatch": ["(^|/)requirements\\.in$"]
+  },
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor"],
+      "automerge": false,
+      "matchManagers": ["pip_requirements"]
+    },
+    {
+      "matchManagers": ["git-submodules"],
+      "automerge": true,
+      "automergeType": "branch",
+      "semanticCommitScope": "docs",
+      "stabilityDays": 0
+    }
+  ]
+}
